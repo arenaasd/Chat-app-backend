@@ -6,7 +6,6 @@ import cookieParser from "cookie-parser";
 import message from "./src/routes/message.js";
 import bodyParser from "body-parser";
 import cors from "cors";
-
 import { app, server } from "./src/config/socket.js";
 
 dotenv.config();
@@ -15,11 +14,14 @@ app.use(express.json({ limit: "10mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
 
-// Simple CORS setup to allow all origins (public API use)
+// Set frontend URL to match your deployment URL
+const frontendUrl = "https://vibe-chat-omega.vercel.app";
+
+// CORS setup to allow credentials and specific origin
 app.use(
   cors({
-    origin: "*",   // Allow all origins
-    credentials: true, // Allow cookies and credentials to be sent with requests
+    origin: frontendUrl,  // Only allow this frontend URL
+    credentials: true,     // Allow credentials (cookies, HTTP auth)
   })
 );
 
