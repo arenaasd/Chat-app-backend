@@ -22,6 +22,13 @@ const allowedOrigins = [
   'https://vibe-chat-omega.vercel.app'
 ];
 
+import cors from "cors";
+
+// Set up CORS to allow requests from your frontend
+const allowedOrigins = [
+  'https://vibe-chat-omega.vercel.app'
+];
+
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
@@ -30,8 +37,10 @@ app.use(cors({
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true, // Allow cookies and credentials to be sent with the request
+  // Remove credentials if you're not using cookies or sessions
+  credentials: false, // Disallow sending cookies with the request
 }));
+
 
 
 app.use("/api/auth", auth)
