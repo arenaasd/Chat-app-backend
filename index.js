@@ -15,8 +15,6 @@ dotenv.config();
 app.use(cookieParser())
 const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
 
-import cors from "cors";
-
 // Set up CORS to allow cookies and credentials
 const allowedOrigins = [
   'https://vibe-chat-omega.vercel.app'
