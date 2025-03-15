@@ -5,7 +5,8 @@ import { connectDB } from "./src/config/db.js";
 import cookieParser from "cookie-parser";
 import message from "./src/routes/message.js";
 import bodyParser from "body-parser";
-import cors from "cors";
+const cors = require('cors');
+app.use(cors());
 import { app, server } from "./src/config/socket.js";
 
 dotenv.config();
@@ -18,14 +19,7 @@ app.use(cookieParser());
 const frontendUrl = "https://vibe-chat-omega.vercel.app";
 
 // CORS setup to allow credentials and specific origin
-app.use(
-  cors({
-    origin: "https://vibe-chat-omega.vercel.app",  // Allow only this frontend URL
-    credentials: true,                             // Allow credentials (cookies, HTTP auth)
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow the specific methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers (you can adjust if needed)
-  })
-);
+
 
 
 app.use("/api/auth", auth);
