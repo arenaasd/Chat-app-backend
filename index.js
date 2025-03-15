@@ -15,11 +15,24 @@ dotenv.config();
 app.use(cookieParser())
 const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
 
-// Set up CORS with the dynamic frontend URL
+import cors from "cors";
+
+// Set up CORS to allow cookies and credentials
+const allowedOrigins = [
+  'https://vibe-chat-omega.vercel.app'
+];
+
 app.use(cors({
-    origin: frontendUrl,  // Use FRONTEND_URL or fallback to localhost:5173
-    credentials: true  // Allow credentials (cookies, authorization headers)
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true, // Allow cookies and credentials to be sent with the request
 }));
+
 
 app.use("/api/auth", auth)
 app.use("/api/messages", message)
