@@ -20,11 +20,9 @@ const frontendUrl = "https://vibe-chat-omega.vercel.app";
 // CORS setup to allow credentials and specific origin
 app.use(
   cors({
-    origin: frontendUrl,  // Only allow this frontend URL
-    credentials: true,     // Allow credentials (cookies, HTTP auth)
+    origin: "*",   // Allow all origins
   })
 );
-
 app.use("/api/auth", auth);
 app.use("/api/messages", message);
 
