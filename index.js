@@ -18,11 +18,14 @@ app.use(cookieParser())
 
 
 // Set up CORS with the dynamic frontend URL
-app.use(cors({
-    origin: process.env.FRONTEND_URL ,  // Use FRONTEND_URL or fallback to localhost:5173
-    credentials: true  // Allow credentials (cookies, authorization headers)
-}));
-
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,  // The frontend URL should be dynamic based on environment
+    credentials: true,  // Allow cookies to be sent with requests
+    methods: ["GET", "POST", "PUT", "DELETE"],  // Specify allowed HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"],  // Specify allowed headers
+  })
+);
 app.use("/api/auth", auth)
 app.use("/api/messages", message)
 
