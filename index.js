@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 import { connectDB } from "./src/config/db.js";
 import cookieParser from "cookie-parser";
 import message from "./src/routes/message.js";
-import bodyParser from "body-parser";
 import cors from "cors";
+import bodyParser from "body-parser";
 import { app , server } from "./src/config/socket.js";
 
 
