@@ -23,7 +23,6 @@ app.use(
     origin: process.env.FRONTEND_URL,  // The frontend URL should be dynamic based on environment
     credentials: true,  // Allow cookies to be sent with requests
     methods: ["GET", "POST", "PUT", "DELETE"],  // Specify allowed HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"],  // Specify allowed headers
   })
 );
 app.use("/api/auth", auth)
