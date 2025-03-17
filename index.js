@@ -17,14 +17,17 @@ dotenv.config();
 app.use(cookieParser())
 
 
-// Set up CORS with the dynamic frontend URL
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,  // The frontend URL should be dynamic based on environment
-    credentials: true,  // Allow cookies to be sent with requests
-    methods: ["GET", "POST", "PUT", "DELETE"],  // Specify allowed HTTP methods
+    origin: process.env.FRONTEND_URL,  // Ensure this is set to the correct URL
+    credentials: true,  // Allow cookies or credentials
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
+
+app.options("*", cors());  // Ensure preflight OPTIONS requests are handled
+
+
 app.use("/api/auth", auth)
 app.use("/api/messages", message)
 
