@@ -1,28 +1,26 @@
-// In your socket.js file
-
+// socket.js
 import { Server } from "socket.io";
 import http from "http";
 import express from "express";
 
-// Define app and server
+// Initialize app, server, and io
 const app = express();
 const server = http.createServer(app);
-
-// Initialize io (ensure this is initialized before using it)
 const io = new Server(server, {
   cors: {
     origin: [process.env.FRONTEND_URL],
   },
 });
 
-// used to store online users
+// Store for online users
 const userSocketMap = {}; // {userId: socketId}
 
-// Export the function to get the receiver socket ID
+// Define and export getReceiverSocketId function
 export function getReceiverSocketId(userId) {
   return userSocketMap[userId];
 }
 
+// Socket connection logic
 io.on("connection", (socket) => {
   console.log("A user connected", socket.id);
 
@@ -38,5 +36,5 @@ io.on("connection", (socket) => {
   });
 });
 
-// Export io, app, and server so other files can use them
+// Export io, app, and server
 export { io, app, server };
