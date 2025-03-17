@@ -36,5 +36,5 @@ io.on("connection", (socket) => {
   });
 });
 
-// Export everything at the end
+
 export { io, app, server, getReceiverSocketId };
