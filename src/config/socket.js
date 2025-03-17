@@ -15,8 +15,8 @@ const io = new Server(server, {
 // Store for online users
 const userSocketMap = {}; // {userId: socketId}
 
-// Define and export getReceiverSocketId function
-export function getReceiverSocketId(userId) {
+// Define getReceiverSocketId function
+function getReceiverSocketId(userId) {
   return userSocketMap[userId];
 }
 
@@ -36,5 +36,5 @@ io.on("connection", (socket) => {
   });
 });
 
-// Export io, app, and server
-export { io, app, server };
+// Export everything at the end
+export { io, app, server, getReceiverSocketId };
